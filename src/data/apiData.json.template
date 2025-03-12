@@ -1,0 +1,12 @@
+{
+	"googleSheets": {
+		"url": "https://sheets.googleapis.com/v4/spreadsheets",
+		"apiKey": "REPLACE",
+		"sheetData": {
+			"REPLACE": {
+				"id": "REPLACE",
+				"table": "REPLACE"
+			}
+		}
+	}
+}
