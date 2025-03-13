@@ -151,16 +151,19 @@ const ItemList = (props) => {
 											.sort((a, b) => a.team < b.team ? -1 : a.team > b.team ? 1 :
 												a.season < b.season ? -1 : a.season > b.season ? 1 : 0)
 											.map((jersey, index) =>
-												<Grid key={index} container size={{xs: 12, md: 5}}
+												<Grid key={index} container size={{xs: 12, lg: 5}}
 													justifyContent={"space-between"}
 													padding={2} border={2} margin={2}
 												>
 
-													<Grid size={7} >
+													<Grid size={{xs: 12, lg: 7}} >
 														<JerseyDetails jersey={jersey} id={itemId} isListItem />
 													</Grid>
 
-													<Grid size={4} justifyItems="end">
+													<Grid size={{xs: 12, lg: 4}}
+														justifyItems={{xs: "center", lg: "end"}}
+														paddingTop={{xs: 2, lg: 0}}
+													>
 														<Images
 															className="thumbnails"
 															id={jersey.id}
