@@ -4,6 +4,7 @@ import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } 
 
 const Home = lazy(() => import("@/views/Home"));
 const Jerseys = lazy(() => import("@/views/Jerseys"));
+const Scarves = lazy(() => import("@/views/Scarves"));
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -15,7 +16,15 @@ const router = createBrowserRouter(
 						<Jerseys />
 					</Suspense>
 				}
-			/ >
+			/>
+			<Route
+				path="/scarves/:itemId?"
+				element={
+                    <Suspense fallback={<>Loading app...</>}>
+						<Scarves />
+					</Suspense>
+				}
+			/>
 			<Route
 				index
 				element={

@@ -30,11 +30,9 @@ const Home = () => {
 							<Button
 								variant="contained"
 								onClick={() => navigate("/scarves")}
-								disabled
 							>
 								Scarves
 							</Button>
-							<p>(scarves coming soon)</p>
 						</Grid>
 
 

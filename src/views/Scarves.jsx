@@ -7,10 +7,10 @@ import DialogContent from "@mui/material/DialogContent";
 import Grid from "@mui/material/Grid2";
 
 import Images from "@/components/Images";
-import JerseyDetails from "@/components/JerseyDetails";
+import ScarfDetails from "@/components/ScarfDetails";
 import { SiteTheme } from "@/components/SiteTheme";
 
-import { getJerseyList } from "@/services/itemService";
+import { getScarfList } from "@/services/itemService";
 
 import "@/style/main.scss";
 
@@ -18,12 +18,12 @@ const ItemList = (props) => {
 
 	const [currentDialog, setCurrentDialog] = useState(null);
 
-	const [jerseyList, _setJerseyList] = useState([]);
+	const [scarfList, _setScarfList] = useState([]);
 
-	const jerseyListRef = useRef(jerseyList);
-	const setJerseyList = (data) => {
-		jerseyListRef.current = data;
-		_setJerseyList(data);
+	const scarfListRef = useRef(scarfList);
+	const setScafList = (data) => {
+		scarfListRef.current = data;
+		_setScarfList(data);
 	}
 
 	const { itemId } = useParams();
@@ -31,9 +31,9 @@ const ItemList = (props) => {
 	useEffect(() => {
 		openDialog("loading");
 		Promise.all([
-			loadJerseyList(),
+			loadScarfList(),
 		])
-			.then((loadedJerseyList) => {
+			.then((loadedScarfList) => {
 				closeDialog();
 			})
 			.catch((error) => {
@@ -43,11 +43,11 @@ const ItemList = (props) => {
 
 	}, []);
 
-	const loadJerseyList = async () => {
+	const loadScarfList = async () => {
 
-		getJerseyList()
-			.then((loadedJerseyList) => {
-				setJerseyList(loadedJerseyList);
+		getScarfList()
+			.then((loadedScarfList) => {
+				setScafList(loadedScarfList);
 			})
 			.catch((error) => {
 				console.error(error);
@@ -56,10 +56,10 @@ const ItemList = (props) => {
 
 	}
 
-	const getSingleJersey = id => {
-		const jerseyFilter = jerseyListRef.current.filter(jersey => jersey.id === id);
-		if (jerseyFilter.length === 1) {
-			return jerseyFilter[0];
+	const getSingleScarf = id => {
+		const scarfFilter = scarfListRef.current.filter(scarf => scarf.id === id);
+		if (scarfFilter.length === 1) {
+			return scarfFilter[0];
 		} else {
 			return {};
 		}
@@ -86,7 +86,7 @@ const ItemList = (props) => {
 				</DialogContent>
 			</Dialog>
 
-			{jerseyListRef.current.length ?
+			{scarfListRef.current.length ?
 
 				<Grid container size={12}>
 
@@ -97,18 +97,18 @@ const ItemList = (props) => {
 							<Grid size={12}>
 
 								<Grid size={12} padding={2}>
-									<Link to="/jerseys">
+									<Link to="/scarves">
 										<Button variant="contained">
-											Back to jersey list
+											Back to scarf list
 										</Button>
 									</Link>
 								</Grid>
 
 								<Grid size={12} container padding={2}>
 
-									<JerseyDetails
+									<ScarfDetails
+										scarf={getSingleScarf(itemId)}
 										id={itemId}
-										jersey={getSingleJersey(itemId)}
 									/>
 
 								</Grid>
@@ -121,9 +121,9 @@ const ItemList = (props) => {
 
 								<Grid size={12} padding={2}>
 
-									<Link to="/scarves">
+									<Link to="/jerseys">
 										<Button variant="contained">
-											Go to Scarves
+											Go to Jerseys
 										</Button>
 									</Link>
 
@@ -132,26 +132,26 @@ const ItemList = (props) => {
 								<Grid size={12} padding={0}>
 
 									<Grid container size={12} justifyContent="center">
-										<h1>Jerseys for sale</h1>
+										<h1>Scarves for sale</h1>
 									</Grid>
 
 									<Grid container size={12} justifyContent={"space-around"}>
 
-										{jerseyListRef.current
-											.filter(jersey => !jersey.sold)
+										{scarfListRef.current
+											.filter(scarf => !scarf.sold)
 											.sort((a, b) => a.team < b.team ? -1 : a.team > b.team ? 1 :
 												a.season < b.season ? -1 : a.season > b.season ? 1 : 0)
-											.map((jersey, index) =>
+											.map((scarf, index) =>
 												<Grid key={index} container size={{xs: 12, lg: 5}}
 													justifyContent={"space-between"}
 													padding={2} border={2} margin={2}
 												>
 
 													<Grid size={{xs: 12, lg: 7}} marginTop={-2}>
-														<JerseyDetails
+														<ScarfDetails
 															isListItem
 															id={itemId}
-															jersey={jersey}
+															scarf={scarf}
 														/>
 													</Grid>
 
@@ -159,17 +159,16 @@ const ItemList = (props) => {
 														justifyItems={{xs: "center", lg: "end"}}
 														paddingTop={{xs: 2, lg: 0}}
 													>
-														<Link to={`/jerseys/${jersey.id}`}>
+														<Link to={`/scarves/${scarf.id}`}>
 															<Button variant="contained">
 																More details
 															</Button>
 														</Link>
-
 														<Images
-															className="thumbnails"
-															id={jersey.id}
-															show={1}
-															type="jerseys"
+															className="thumbnails scarves"
+															id={scarf.id}
+															show={scarf.photos === 1 ? 1 : 2}
+															type="scarves"
 														/>
 													</Grid>
 

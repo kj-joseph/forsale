@@ -10,7 +10,7 @@ import Images from "@/components/Images";
 
 import displayDecimal from "@/utils/displayDecimal";
 
-const JerseyDetails = ({jersey, id, isListItem, openImageView}) => {
+const JerseyDetails = ({jersey, id, isListItem}) => {
 
 	return (
 
@@ -104,10 +104,11 @@ const JerseyDetails = ({jersey, id, isListItem, openImageView}) => {
 										<TableCell><strong>Photos</strong><br/>(Click to enlarge in new window)</TableCell>
 										<TableCell>
 											<Images
+												hasLink
 												className="details"
 												id={jersey.id}
 												show={jersey.photos}
-												hasLink
+												type="jerseys"
 											/>
 										</TableCell>
 									</TableRow>

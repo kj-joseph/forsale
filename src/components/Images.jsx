@@ -1,23 +1,23 @@
-const ImageThumbnails = ({className, id, show, total, hasLink}) => {
+const ImageThumbnails = ({className, hasLink, id, show, type}) => {
 
 	return (
 
 		<div className={className}>
-			{[...Array(show || total)].map((e, index) =>
+			{[...Array(show)].map((e, index) =>
 				<div className="image" key={index}>
 					{hasLink ?
 						<a
 							target="_blank"
-							href={`/images/jerseys/${id}-${index + 1}.jpg`}
+							href={`/images/${type}/${id}-${index + 1}.jpg`}
 						>
 							<img
-								src={`/images/jerseys/${id}-${index + 1}.jpg`}
+								src={`/images/${type}/${id}-${index + 1}.jpg`}
 								alt=""
 							/>
 						</a>
 					:
 						<img
-							src={`/images/jerseys/${id}-${index + 1}.jpg`}
+							src={`/images/${type}/${id}-${index + 1}.jpg`}
 							alt=""
 						/>
 					}

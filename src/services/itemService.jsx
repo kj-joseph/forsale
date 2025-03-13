@@ -31,3 +31,34 @@ export const getJerseyList = async () =>
 				reject(error));
 
 	});
+
+	export const getScarfList = async () =>
+
+		new Promise((resolve, reject) => {
+
+			callGoogleSheets("scarves", {})
+				.then((response) =>
+					resolve(response
+						.filter(jersey => !!jersey.id)
+						.map(jersey => ({
+							id: jersey.id,
+							ebayLink: jersey.ebayLink,
+							event: jersey.event,
+							league: jersey.league,
+							notes: jersey.notes,
+							org: jersey.org,
+							photos: Number(jersey.photos),
+							price: jersey.price,
+							sameOnBothSides: jersey.sameOnBothSides === "TRUE",
+							sold: jersey.sold === "TRUE",
+							sport: jersey.sport,
+							style: jersey.style,
+							team: jersey.team,
+							year: jersey.year,
+					})))
+				)
+
+				.catch((error) =>
+					reject(error));
+
+		});

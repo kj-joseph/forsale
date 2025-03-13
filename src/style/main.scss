@@ -43,29 +43,32 @@ body {
 	.thumbnails {
 
 		.image {
+			display: inline-block;
 			height: 100px;
 			vertical-align: middle;
-			margin-bottom: 10px;
-
-			&.total {
-				width: 40px;
-			}
+			margin: 1em 0 0 1em;
 		}
+
+		&.scarves .image {
+			height: 220px;
+		}
+
 	}
 
 	.details {
 
 		.image {
-			height: 200px;
 			display: inline-block;
+			height: 200px;
 			vertical-align: middle;
 			margin-right: 10px;
 			margin-bottom: 10px;
-
-			&.total {
-				width: 40px;
-			}
 		}
+
+		&.scarves .image {
+			height: 350px;
+		}
+
 	}
 
 	.bigImage {
