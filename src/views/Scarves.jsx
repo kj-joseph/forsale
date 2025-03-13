@@ -135,6 +135,10 @@ const ItemList = (props) => {
 										<h1>Scarves for sale</h1>
 									</Grid>
 
+									<Grid container size={12} justifyContent="center" marginTop={-2}>
+										<p>(More coming soon)</p>
+									</Grid>
+
 									<Grid container size={12} justifyContent={"space-around"}>
 
 										{scarfListRef.current
