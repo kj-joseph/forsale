@@ -20,7 +20,7 @@ export const getJerseyList = async () =>
 						price: jersey.price,
 						season: jersey.season,
 						size: jersey.size,
-						sold: jersey.sold === "TRUE",
+						status: jersey.status,
 						sport: jersey.sport,
 						team: jersey.team,
 						type: jersey.type,
@@ -39,22 +39,22 @@ export const getJerseyList = async () =>
 			callGoogleSheets("scarves", {})
 				.then((response) =>
 					resolve(response
-						.filter(jersey => !!jersey.id)
-						.map(jersey => ({
-							id: jersey.id,
-							ebayLink: jersey.ebayLink,
-							event: jersey.event,
-							league: jersey.league,
-							notes: jersey.notes,
-							org: jersey.org,
-							photos: Number(jersey.photos),
-							price: jersey.price,
-							sameOnBothSides: jersey.sameOnBothSides === "TRUE",
-							sold: jersey.sold === "TRUE",
-							sport: jersey.sport,
-							style: jersey.style,
-							team: jersey.team,
-							year: jersey.year,
+						.filter(scarf => !!scarf.id)
+						.map(scarf => ({
+							id: scarf.id,
+							ebayLink: scarf.ebayLink,
+							event: scarf.event,
+							league: scarf.league,
+							notes: scarf.notes,
+							org: scarf.org,
+							photos: Number(scarf.photos),
+							price: scarf.price,
+							sameOnBothSides: scarf.sameOnBothSides === "TRUE",
+							status: scarf.status,
+							sport: scarf.sport,
+							style: scarf.style,
+							team: scarf.team,
+							year: scarf.year,
 					})))
 				)
 

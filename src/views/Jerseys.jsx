@@ -135,10 +135,14 @@ const ItemList = (props) => {
 										<h1>Jerseys for sale</h1>
 									</Grid>
 
+									<Grid container size={12} justifyContent="center" marginTop={-2}>
+										<p>(More coming soon)</p>
+									</Grid>
+
 									<Grid container size={12} justifyContent={"space-around"}>
 
 										{jerseyListRef.current
-											.filter(jersey => !jersey.sold)
+											.filter(jersey => ["paid", "postage", "shipped", "reserved"].indexOf(jersey.status) === -1)
 											.sort((a, b) => a.team < b.team ? -1 : a.team > b.team ? 1 :
 												a.season < b.season ? -1 : a.season > b.season ? 1 : 0)
 											.map((jersey, index) =>
@@ -166,11 +170,15 @@ const ItemList = (props) => {
 														</Link>
 
 														<Images
+															hasLink
 															className="thumbnails"
 															id={jersey.id}
 															show={1}
 															type="jerseys"
 														/>
+
+														<div><br/>(Click photo to enlarge in new window)</div>
+
 													</Grid>
 
 												</Grid>

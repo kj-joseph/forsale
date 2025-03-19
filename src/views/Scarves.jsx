@@ -142,7 +142,7 @@ const ItemList = (props) => {
 									<Grid container size={12} justifyContent={"space-around"}>
 
 										{scarfListRef.current
-											.filter(scarf => !scarf.sold)
+											.filter(scarf => ["paid", "postage", "shipped", "reserved"].indexOf(scarf.status) === -1)
 											.sort((a, b) => a.team < b.team ? -1 : a.team > b.team ? 1 :
 												a.season < b.season ? -1 : a.season > b.season ? 1 : 0)
 											.map((scarf, index) =>
@@ -169,11 +169,13 @@ const ItemList = (props) => {
 															</Button>
 														</Link>
 														<Images
+															hasLink
 															className="thumbnails scarves"
 															id={scarf.id}
 															show={scarf.photos === 1 ? 1 : 2}
 															type="scarves"
 														/>
+														<div><br/>(Click photo to enlarge in new window)</div>
 													</Grid>
 
 												</Grid>

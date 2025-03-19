@@ -52,7 +52,7 @@ const ScarfDetails = ({scarf, id, isListItem}) => {
 							</TableRow>
 							<TableRow>
 								<TableCell><strong>Price </strong></TableCell>
-								<TableCell>{scarf.price ? `$${displayDecimal(scarf.price, 0)}` : ""} (make offer)</TableCell>
+								<TableCell>{scarf.price ? `$${displayDecimal(scarf.price, 0)} (or make offer)` : "(make offer)"} </TableCell>
 							</TableRow>
 							{scarf.sport ?
 								<TableRow>
